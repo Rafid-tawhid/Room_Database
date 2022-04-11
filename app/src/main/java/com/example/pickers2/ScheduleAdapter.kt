@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pickers2.databinding.ScheduleRowBinding
-class ScheduleAdapter() :ListAdapter<BusScedule,ScheduleAdapter.ScheduleViewHoldder>(MovieDiffUtil()) {
+class ScheduleAdapter(val callback:(BusScedule)->Unit,val callback2:(BusScedule)->Unit) :ListAdapter<BusScedule,ScheduleAdapter.ScheduleViewHoldder>(MovieDiffUtil()) {
 
     class ScheduleViewHoldder(val binding:ScheduleRowBinding):
         RecyclerView.ViewHolder(binding.root){
@@ -61,12 +61,12 @@ class ScheduleAdapter() :ListAdapter<BusScedule,ScheduleAdapter.ScheduleViewHold
 
         }
         holder.itemView.setOnClickListener {
-//            callBack(movie)
+           callback(schedule)
         }
 
-//        holder.binding.imageView2.setOnClickListener {
-//            callBack(movie)
-//        }
+        holder.binding.imageView.setOnClickListener {
+            callback2(schedule)
+        }
 
     }
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,7 +29,7 @@ class ScaduleFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_scaduleFragment2_to_newScaduleFragment)
         }
-        val adapter=ScheduleAdapter()
+        val adapter=ScheduleAdapter(::onClickResponse,::onFavChange)
 
         binding.rv.layoutManager= LinearLayoutManager(activity)
         binding.rv.adapter=adapter
@@ -52,6 +53,17 @@ class ScaduleFragment : Fragment() {
             adapter.submitList(scheduleList)
         }
         return binding.root
+    }
+
+
+
+    fun onClickResponse(schedule: BusScedule){
+
+        Toast.makeText(requireActivity(), ""+schedule.name, Toast.LENGTH_SHORT).show()
+    }
+
+    fun onFavChange(schedule: BusScedule){
+        Toast.makeText(requireActivity(), schedule.name+" Added to Favorite", Toast.LENGTH_SHORT).show()
     }
 
 
