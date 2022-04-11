@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/scaduleFragment2">
+
+    <fragment
+        android:id="@+id/newScaduleFragment"
+        android:name="com.example.pickers2.NewScaduleFragment"
+        android:label="fragment_new_scadule"
+        tools:layout="@layout/fragment_new_scadule" >
+        <action
+            android:id="@+id/action_newScaduleFragment_to_scaduleFragment2"
+            app:destination="@id/scaduleFragment2"
+            app:popUpTo="@id/scaduleFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/scaduleFragment2"
+        android:name="com.example.pickers2.ScaduleFragment"
+        android:label="fragment_scadule"
+        tools:layout="@layout/fragment_scadule" >
+        <action
+            android:id="@+id/action_scaduleFragment2_to_newScaduleFragment"
+            app:destination="@id/newScaduleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/callingFragment"
+        android:name="com.example.pickers2.CallingFragment"
+        android:label="fragment_calling"
+        tools:layout="@layout/fragment_calling" />
+</navigation>

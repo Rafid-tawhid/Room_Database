@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/kotlinProjects/Pickers2/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
+        <entry key="..\:/kotlinProjects/Pickers2/app/src/main/res/layout/fragment_call.xml" value="0.18" />
+        <entry key="..\:/kotlinProjects/Pickers2/app/src/main/res/layout/fragment_calling.xml" value="0.17864583333333334" />
+        <entry key="..\:/kotlinProjects/Pickers2/app/src/main/res/layout/fragment_new_scadule.xml" value="0.20416666666666666" />
+        <entry key="..\:/kotlinProjects/Pickers2/app/src/main/res/layout/fragment_scadule.xml" value="0.20416666666666666" />
+        <entry key="..\:/kotlinProjects/Pickers2/app/src/main/res/layout/schedule_row.xml" value="0.75" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
