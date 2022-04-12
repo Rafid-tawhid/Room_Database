@@ -30,6 +30,7 @@ class NewScaduleFragment : Fragment() {
     private var selectDate=""
     private var selectTime=""
 
+    private var id:Long?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +40,27 @@ class NewScaduleFragment : Fragment() {
 
         initCitySpinner()
         initBusTypeRadioGroup()
+        id=arguments?.getLong("id")
+        if(id!=null){
+            binding.saveBtn.setText("Update")
+            viewmodels.getSchedulesById(id!!).observe(viewLifecycleOwner){
+                binding.busNameId.setText(it.name)
+                binding.showDateTv.setText(it.departDate)
+                binding.showTimeTv.setText(it.departTime)
+                val fromIndex= cityList.indexOf(it.from)
+                binding.citySpinnerFromId.setSelection(fromIndex)
+                val toIndex= cityList.indexOf(it.to)
+                binding.citySpinnerToId.setSelection(toIndex)
+                if(it.busType=="Economy"){
+                    binding.busTypeRg.check(R.id.economyRb)
+                }
+                if(it.busType=="Bussiness"){
+                    binding.busTypeRg.check(R.id.bussinessRb)
+                }
+
+
+            }
+        }
         binding.saveBtn.setOnClickListener {
             saveButtonInfo()
         }
@@ -81,7 +103,14 @@ class NewScaduleFragment : Fragment() {
 //            .getScheduleDao().
 //            addSchedule(scadule)
 
-        viewmodels.addSchedule(scadule)
+        if(id!=null){
+            scadule.id=id!!
+            viewmodels.updateSchedule(scadule)
+        }
+        else{
+            viewmodels.addSchedule(scadule)
+        }
+
 
 
         Log.d("TAG", "saveButtonInfo: $scadule")

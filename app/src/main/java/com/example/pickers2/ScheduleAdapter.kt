@@ -2,11 +2,15 @@ package com.example.pickers2
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pickers2.databinding.ScheduleRowBinding
-class ScheduleAdapter(val callback:(BusScedule)->Unit,val callback2:(BusScedule)->Unit) :ListAdapter<BusScedule,ScheduleAdapter.ScheduleViewHoldder>(MovieDiffUtil()) {
+
+//val callback:(BusScedule)->Unit,val callback2:(BusScedule)->Unit,
+
+class ScheduleAdapter(val callback2:(BusScedule)->Unit,val menuItemCallBack:(BusScedule,RowAction)->Unit) :ListAdapter<BusScedule,ScheduleAdapter.ScheduleViewHoldder>(MovieDiffUtil()) {
 
     class ScheduleViewHoldder(val binding:ScheduleRowBinding):
         RecyclerView.ViewHolder(binding.root){
@@ -40,6 +44,14 @@ class ScheduleAdapter(val callback:(BusScedule)->Unit,val callback2:(BusScedule)
 
     override fun onBindViewHolder(holder: ScheduleViewHoldder, position: Int) {
         val schedule=getItem(position)
+
+
+        holder.binding.menuBtn.setOnClickListener {
+
+
+        }
+
+
 //        if(schedule.isFav){
 //            holder.binding.imageView.setImageResource(R.drawable.non_fav)
 //        }
@@ -61,12 +73,34 @@ class ScheduleAdapter(val callback:(BusScedule)->Unit,val callback2:(BusScedule)
 
         }
         holder.itemView.setOnClickListener {
-           callback(schedule)
+           //callback(schedule)
         }
 
         holder.binding.imageView.setOnClickListener {
             callback2(schedule)
         }
 
+
+        val menuIv=holder.binding.menuBtn
+        menuIv.setOnClickListener {
+            val popupMenu=PopupMenu(menuIv.context,menuIv)
+            popupMenu.menuInflater.inflate(R.menu.row_menu,popupMenu.menu)
+            popupMenu.show()
+            popupMenu.setOnMenuItemClickListener {
+              val action = when(it.itemId){
+                    R.id.item_edit->RowAction.EDIT
+                    R.id.item_delete->RowAction.DELETE
+                    else->RowAction.NONE
+
+                }
+                menuItemCallBack(schedule,action)
+                true
+            }
+        }
+
     }
+}
+
+enum class RowAction{
+    EDIT,DELETE,NONE
 }

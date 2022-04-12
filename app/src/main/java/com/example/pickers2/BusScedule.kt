@@ -9,7 +9,7 @@ val scheduleList= mutableListOf<BusScedule>()
 @Entity(tableName = "tbl_schedule")
 data class BusScedule(
   @PrimaryKey(autoGenerate = true)
-  val id:Long=0,
+  var id:Long=0,
   val name:String,
   val from:String,
   val to:String,
